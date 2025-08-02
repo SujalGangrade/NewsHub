@@ -29,13 +29,32 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-// CORS configuration
+// CORS configuration]
+
+// app.use(cors({
+//   origin: process.env.NODE_ENV === 'production' 
+//     ? ['https://your-frontend-domain.com'] 
+//     : ['http://localhost:3000', 'http://127.0.0.1:3000'],
+//   credentials: true
+// }));
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? ['https://your-frontend-domain.com'] 
-    : ['http://localhost:3000', 'http://127.0.0.1:3000'],
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      'https://newshub-frontend.onrender.com', // ✅ Replace with your actual frontend domain
+      'http://localhost:3000',
+      'http://127.0.0.1:3000'
+    ];
+
+    // Allow requests with no origin (like mobile apps, curl, etc.)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
+
 
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
