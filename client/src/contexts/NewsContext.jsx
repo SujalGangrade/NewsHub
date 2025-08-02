@@ -29,7 +29,7 @@ export const NewsProvider = ({ children }) => {
       setLoading(true);
       setError(null);
       
-      const response = await axios.get('/api/news');
+      const response = await axios.get('https://newshub-8c6a.onrender.com/api/news');
       setArticles(response.data.data);
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to load articles');
@@ -40,7 +40,7 @@ export const NewsProvider = ({ children }) => {
 
   const createArticle = async (articleData) => {
     try {
-      const response = await axios.post('/api/news', articleData);
+      const response = await axios.post('https://newshub-8c6a.onrender.com/api/news', articleData);
       const newArticle = response.data.data;
       setArticles(prev => [newArticle, ...prev]);
       return { success: true, article: newArticle };
@@ -54,7 +54,7 @@ export const NewsProvider = ({ children }) => {
 
   const updateArticle = async (id, articleData) => {
     try {
-      const response = await axios.put(`/api/news/${id}`, articleData);
+      const response = await axios.put(`https://newshub-8c6a.onrender.com/api/news/${id}`, articleData);
       const updatedArticle = response.data.data;
       setArticles(prev => prev.map(article => 
         article._id === id ? updatedArticle : article
@@ -70,7 +70,7 @@ export const NewsProvider = ({ children }) => {
 
   const deleteArticle = async (id) => {
     try {
-      await axios.delete(`/api/news/${id}`);
+      await axios.delete(`https://newshub-8c6a.onrender.com/api/news/${id}`);
       setArticles(prev => prev.filter(article => article._id !== id));
       return { success: true };
     } catch (error) {
@@ -83,7 +83,7 @@ export const NewsProvider = ({ children }) => {
 
   const getArticleById = async (id) => {
     try {
-      const response = await axios.get(`/api/news/${id}`);
+      const response = await axios.get(`https://newshub-8c6a.onrender.com/api/news/${id}`);
       return response.data.data;
     } catch (error) {
       throw new Error(error.response?.data?.message || 'Failed to fetch article');

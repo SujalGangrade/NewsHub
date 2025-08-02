@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
 
   const verifyToken = async (token) => {
     try {
-      const response = await axios.post('/api/auth/verify');
+      const response = await axios.post('https://newshub-8c6a.onrender.com/api/auth/verify');
       setIsAuthenticated(true);
       setUser(response.data.data.admin);
     } catch (error) {
@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (credentials) => {
     try {
-      const response = await axios.post('/api/auth/login', credentials);
+      const response = await axios.post('https://newshub-8c6a.onrender.com/api/auth/login', credentials);
       const { token, admin } = response.data.data;
       
       localStorage.setItem('adminToken', token);
@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }) => {
 
   const createAdmin = async (adminData) => {
     try {
-      const response = await axios.post('/api/auth/create-admin', adminData);
+      const response = await axios.post('https://newshub-8c6a.onrender.com/api/auth/create-admin', adminData);
       return { success: true, data: response.data.data };
     } catch (error) {
       return { 
