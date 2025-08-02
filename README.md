@@ -192,3 +192,7 @@ Only the super admin has the right to create a new editor who can:
 - Post articles
 - Edit articles
 - Delete articles
+
+## 🔗 Live Demo
+
+[Click here to view the live site](https://fancy-clafoutis-c567a9.netlify.app)
