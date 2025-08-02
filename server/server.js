@@ -40,7 +40,7 @@ app.use(limiter);
 app.use(cors({
   origin: (origin, callback) => {
     const allowedOrigins = [
-      'https://newshub-frontend.onrender.com', // ✅ Replace with your actual frontend domain
+      'https://fancy-clafoutis-c567a9.netlify.app', // ✅ Replace with your actual frontend domain
       'http://localhost:3000',
       'http://127.0.0.1:3000'
     ];
